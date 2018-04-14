@@ -13,6 +13,9 @@
 - name: Add user to docker group
   user: name={{ ansible_user }} groups=docker append=yes 
 
+- name: Create Docker network
+  docker_network: name="br01"
+
 - name: Build Docker image
   docker_image: 
      name: centos-sshd
@@ -28,6 +31,8 @@
           name: sshd{{ item }}
           recreate: yes
           image: centos-sshd
+          networks:
+                  - name: "br01"
   with_sequence: count=2
   register: sshd_dockers
 
