@@ -19,5 +19,13 @@ Following are the detailed steps.
 1. Using ansible "user" module, we create passwordless key in the sshd01.
 1. Using ansible "authorized_key", add the public key to the container sshd02.
 
-For testing 
-Currently we need to know the IP address to 
+For testing we need to connect using IP address.
+
+
+```
+$ git clone 
+$ ansible-playbook --ask-sudo-pass -i hosts.yml play.yml
+```
+
+
+We could also add the entry in "/etc/hosts"
