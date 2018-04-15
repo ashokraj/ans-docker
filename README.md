@@ -17,7 +17,7 @@ Following are the detailed steps.
 1. Using ansible "user" module, we create passwordless key in the sshd01.
 1. Using ansible "authorized_key", add the public key to the container sshd02.
 
-## Pre-requisites
+### Pre-requisites
 
 * Ansible and Docker should be install. 
 * Docker daemon should be running.
