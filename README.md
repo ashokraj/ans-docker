@@ -1,11 +1,10 @@
 # ans-docker
 
-This repo has the ansible playbook for
+This repo has the ansible playbook, which does the following.
 
-* Creates two docker containers which runs the SSHD command.
-* Two container allows password less SSH access to the host.
-* Generates Password SSH keys on the first docker.
-* Copies ssh public key to the second docker.
+* Creates two docker containers which runs the SSHD daemons.
+* Two container allows password-less SSH login from the host.
+* Generates Password SSH keys on the first docker and copies ssh public key to the second docker.
 
 Following are the detailed steps.
 
