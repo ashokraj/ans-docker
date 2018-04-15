@@ -9,7 +9,6 @@ This repo has the ansible playbook for
 
 Following are the detailed steps.
 
-1. Install and Start Docker.
 1. Creates an Docker image "centos-sshd" with CentOS as the base. 
    * Image was created using the Dockerfile. 
    * Image has "docker_root" user created and gives passwordless SSH  access t
@@ -19,13 +18,15 @@ Following are the detailed steps.
 1. Using ansible "user" module, we create passwordless key in the sshd01.
 1. Using ansible "authorized_key", add the public key to the container sshd02.
 
-For testing we need to connect using IP address.
+## Pre-requisites
 
+* Ansible and Docker should be install. 
+* Docker daemon should be running.
 
 ```
-$ git clone 
+$ git clone https://github.com/ashokraj/ans-docker
+$ cd ans-docker
 $ ansible-playbook --ask-sudo-pass -i hosts.yml play.yml
+
 ```
 
-
-We could also add the entry in "/etc/hosts"
