@@ -1,21 +1,9 @@
----
+
 
 - hosts: localhost
   remote_user: root
-  roles:
-    - docker
 
-- hosts: sshd1
-  remote_user: "{{ dockuser }}"
-  gather_facts: no
-  tasks:
-          - name: Generate SSH Key
-            user: name="{{ dockuser }}" state=present generate_ssh_key=yes force=yes
-            register: sshd1_results
-
-- hosts: sshd2
-  gather_facts: no
-  remote_user: "{{ dockuser }}"
-  tasks:
-          - name: Add sshd1 public key 
-            authorized_key: user="{{ dockuser }}" state=present key="{{ hostvars['sshd1'].sshd1_results.ssh_public_key }}"
+  tasks: 
+    - debug: msg=">>> {{ item }} <<< "
+      with_items:
+              - "{{ groups['sshd_dockers'] }}"

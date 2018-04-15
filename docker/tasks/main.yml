@@ -1,5 +1,5 @@
 ---
-# tasks file for ans-docker
+# tasks file for docker
 
 
 - name: Install Docker and Related Packages
@@ -13,9 +13,6 @@
 - name: Add user to docker group
   user: name={{ ansible_user }} groups=docker append=yes 
 
-- name: Create Docker network
-  docker_network: name="br01"
-
 - name: Build Docker image
   docker_image: 
      name: centos-sshd
@@ -26,14 +23,18 @@
              dockuser: "{{ dockuser }}"
              pubkey: "{{ pubkey }}"
 
+- name: Create Docker network
+  docker_network: name="br01"
+
 - name: Start Docker Container
   docker_container:
-          name: sshd{{ item }}
+          name: "{{ item }}"
           recreate: yes
           image: centos-sshd
           networks:
                   - name: "br01"
-  with_sequence: count=2
+  with_items:
+          - "{{ groups['sshd_dockers'] }}"
   register: sshd_dockers
 
 
@@ -41,5 +42,6 @@
   add_host:
           name: "{{ item.ansible_facts.docker_container.Name | regex_replace('.*/','')  }}"
           ansible_host: "{{ item.ansible_facts.docker_container.NetworkSettings.Networks.bridge.IPAddress }}"
+          groups: sshd_dockers
   with_items:
         - "{{ sshd_dockers.results  }}"
