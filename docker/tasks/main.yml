@@ -6,7 +6,7 @@
 
 - name: Checking variable pubkey is set
   fail: msg="Please define 'pubkey' in {{ playbook_dir  }}/group_vars/all"
-  when: ( pubkey == "" ) or ( pubkey is undefined )
+  when: ( pubkey | trim == '' ) or ( pubkey is undefined ) or ( pubkey is none )
 
 - name: Build Docker image
   docker_image: 
