@@ -44,20 +44,18 @@ $ ansible-playbook --ask-sudo-pass -i hosts.yml play.yml
 
 ```
 
-Once the playbook ran fine check the 
-
+Once the playbook ran fine, check the containers are running and able to SSH without password as shown below. 
 ```
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 414a14bccec0        centos-sshd         "/sbin/sshd -D"     15 minutes ago      Up 15 minutes       22/tcp              sshd02
 3b6e81946496        centos-sshd         "/sbin/sshd -D"     15 minutes ago      Up 15 minutes       22/tcp              sshd01
 
-$docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd01
+$ docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd01
 172.18.0.2
 
-$  docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd02
+$ docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd02
 172.18.0.3
-
 
 $ ssh 172.18.0.2 -l docker_root
 Last login: Mon Apr 16 04:59:33 2018 from gateway
