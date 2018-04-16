@@ -1,17 +1,12 @@
 ---
 # tasks file for docker
 
-
-- name: Install Docker and Related Packages
-  apt: name={{ item }} state=present
-  with_items:
-          - "{{ pkgs }}"
-
 - name: Make sure docker daemon is running 
   systemd: name=docker state=started
 
-- name: Add user to docker group
-  user: name={{ ansible_user }} groups=docker append=yes 
+- name: Checking variable pubkey is set
+  fail: msg="Please define 'pubkey' in {{ playbook_dir  }}/group_vars/all"
+  when: ( pubkey == "" ) or ( pubkey is undefined )
 
 - name: Build Docker image
   docker_image: 
@@ -31,6 +26,7 @@
           name: "{{ item }}"
           recreate: yes
           image: centos-sshd
+          purge_networks: yes
           networks:
                   - name: "br01"
   with_items:
@@ -41,7 +37,7 @@
 - name: Add Docker to Ansible inventory 
   add_host:
           name: "{{ item.ansible_facts.docker_container.Name | regex_replace('.*/','')  }}"
-          ansible_host: "{{ item.ansible_facts.docker_container.NetworkSettings.Networks.bridge.IPAddress }}"
+          ansible_host: "{{ item.ansible_facts.docker_container.NetworkSettings.Networks.br01.IPAddress }}"
           groups: sshd_dockers
   with_items:
         - "{{ sshd_dockers.results  }}"

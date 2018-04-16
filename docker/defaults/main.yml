@@ -1,9 +1,2 @@
 ---
 # defaults file for ans-docker
-
-pkgs: 
-    - "docker"
-    - "docker.io"
-      
-
-pubkey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDuE8oEWQyxzq1S8IfwxjeK+0bGg9tVjDzgqFLfi0ABK/CmANUXaWjNCEnRXk4lMLK/BAhqpi2Rx+x3Bs8WOUqUcd5eFLErB7s7IbQAYM8TpJEVWggGiqimD/TwJIHPYJWlUF/I/UkodFizeIoVRSnjJAsE9mfJo/VO44Gb5kDrvBpnBkQABzyusQU3/NEGs7ZLIeZNZzn7R60e1zjrv3ek1E9iJ8fdCJMeW4+DPdHwPhVF3rK6KNaqhz44ukLsd35Yi33qFKCQnmNZkEsJ8L/xE8LpXn0629oLwwdJ7VdbVLt7q7o1sIiDSLJCMHguZFGYVttoh58fVA4CmPI2sSgJ"

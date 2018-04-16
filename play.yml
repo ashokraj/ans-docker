@@ -4,6 +4,7 @@
   remote_user: root
   roles:
     - docker
+  
 
 - hosts: sshd01
   remote_user: "{{ dockuser }}"
@@ -19,3 +20,4 @@
   tasks:
           - name: Add sshd1 public key 
             authorized_key: user="{{ dockuser }}" state=present key="{{ hostvars['sshd01'].sshd1_results.ssh_public_key }}"
+
