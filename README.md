@@ -32,7 +32,7 @@ $ git clone https://github.com/ashokraj/ans-docker
 $ cd ans-docker
 ```  
 
-Add the host SSH passwordless SSH key to "docker/defaults/main.yml"
+Add the host SSH passwordless public key to "docker/defaults/main.yml"
 ```
 $ cat docker/defaults/main.yml
 ---
