@@ -20,6 +20,7 @@ Following are the detailed steps.
 ### Pre-requisites
 
 * Ansible and Docker should be install. 
+* Docker python api version should be below 3.0.0. I was trying with docker-py version >3.1, I was facing the issue https://github.com/ansible/ansible/issues/35612 while building the docker image
 * Docker daemon should be running.
 
 ```
