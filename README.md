@@ -56,7 +56,10 @@ $ docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd01
 
 $ docker inspect -f '{{ .NetworkSettings.Networks.br01.IPAddress }}' sshd02
 172.18.0.3
+```
 
+SSH from host to docker sshd01 
+```
 $ ssh 172.18.0.2 -l docker_root
 Last login: Mon Apr 16 04:59:33 2018 from gateway
 [docker_root@8d33107e0f3e ~]$ ifconfig
@@ -78,6 +81,9 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX packets 250  bytes 21791 (21.2 KiB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
+```
+SSH from sshd01 to sshd02
+```
 [docker_root@8d33107e0f3e ~]$ ssh sshd02
 Last login: Mon Apr 16 04:59:48 2018 from gateway
 
